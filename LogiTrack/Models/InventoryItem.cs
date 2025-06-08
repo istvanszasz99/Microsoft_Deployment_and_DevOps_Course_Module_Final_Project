@@ -8,12 +8,12 @@ namespace LogiTrack.Models
         public int ItemId { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         public int Quantity { get; set; }
 
         [Required]
-        public string Location { get; set; }
+        public required string Location { get; set; }
 
         public void DisplayInfo()
         {
