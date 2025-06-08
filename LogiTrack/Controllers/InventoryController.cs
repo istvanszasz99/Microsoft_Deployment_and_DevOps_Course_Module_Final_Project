@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using LogiTrack.Models;
 
 [ApiController]
 [Route("api/inventory")]
+[Authorize]
 public class InventoryController : ControllerBase
 {
     private readonly LogiTrackContext _context;
@@ -25,6 +27,7 @@ public class InventoryController : ControllerBase
         return CreatedAtAction(nameof(GetAll), new { id = item.ItemId }, item);
     }
 
+    [Authorize(Roles = "Manager")]
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {

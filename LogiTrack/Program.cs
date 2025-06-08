@@ -7,6 +7,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<LogiTrackContext>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddIdentity<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>()
+    .AddEntityFrameworkStores<LogiTrackContext>();
 
 var app = builder.Build();
 

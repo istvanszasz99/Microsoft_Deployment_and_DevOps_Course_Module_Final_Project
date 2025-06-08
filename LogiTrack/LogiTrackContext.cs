@@ -1,13 +1,17 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using LogiTrack.Models;
 
-public class LogiTrackContext : DbContext
+namespace LogiTrack.Models
 {
-    public DbSet<InventoryItem> InventoryItems { get; set; }
-    public DbSet<Order> Orders { get; set; }
+    public class LogiTrackContext : IdentityDbContext<ApplicationUser>
+    {
+        public DbSet<InventoryItem> InventoryItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite("Data Source=logitrack.db");
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlite("Data Source=logitrack.db");
+    }
 }
