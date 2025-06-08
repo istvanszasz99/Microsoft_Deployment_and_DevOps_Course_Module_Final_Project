@@ -2,6 +2,10 @@ using LogiTrack.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddDbContext<LogiTrackContext>();
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
@@ -31,5 +35,7 @@ using (var context = new LogiTrackContext())
 }
 
 // Remove or comment out the old test block if you want to avoid duplicate output
+
+app.MapControllers();
 
 app.Run();
