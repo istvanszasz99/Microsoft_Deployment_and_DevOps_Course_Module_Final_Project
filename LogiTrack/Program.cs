@@ -9,6 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddIdentity<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>()
     .AddEntityFrameworkStores<LogiTrackContext>();
+builder.Services.AddMemoryCache(); // Enable in-memory caching
 
 var app = builder.Build();
 

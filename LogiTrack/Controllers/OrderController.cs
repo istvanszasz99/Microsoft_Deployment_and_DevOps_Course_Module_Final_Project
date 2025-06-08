@@ -17,14 +17,20 @@ public class OrderController : ControllerBase
     [HttpGet]
     public IActionResult GetAll()
     {
-        var orders = _context.Orders.Include(o => o.Items).ToList();
+        var orders = _context.Orders
+            .Include(o => o.Items)
+            .AsNoTracking()
+            .ToList();
         return Ok(orders);
     }
 
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
-        var order = _context.Orders.Include(o => o.Items).FirstOrDefault(o => o.OrderId == id);
+        var order = _context.Orders
+            .Include(o => o.Items)
+            .AsNoTracking()
+            .FirstOrDefault(o => o.OrderId == id);
         if (order == null) return NotFound();
         return Ok(order);
     }
